@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acadia Online Course</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+/* Base Styles & Resets */
+:root {
+	--primary-color: #5043d2;
+	--secondary-color: #6c757d;
+	--dark-color: #343a40;
+	--light-color: #f8f9fa;
+	--white-color: #ffffff;
+	--gray-light: #e9ecef;
+	--text-color: #495057;
+	--border-color: #dee2e6;
+	--spacing-sm: 10px;
+	--spacing-md: 20px;
+	--spacing-lg: 40px;
+	--border-radius: 8px;
+	--box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+	--transition-speed: 0.3s;
+	--button-purple: #6200EE;
+	--light-purple: #f3e5f5;
+	/* New Footer Colors */
+	--footer-bg: #1c1d1f;
+	--footer-section-one-bg: #2a2b3f;
+	--footer-text-light: #dedfe0;
+	--footer-link-color: #ccc;
+	--footer-heading-color: #dedfe0;
+	--footer-border-color: #3e4143;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Inter', sans-serif;
+	line-height: 1.6;
+	color: var(--text-color);
+	background-color: var(--light-color);
+	scroll-behavior: smooth; /* Enables smooth scrolling to sections */
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 var(--spacing-md);
+}
+
+/* Reusable Buttons */
+.btn {
+	display: inline-block;
+	padding: 12px 25px;
+	border-radius: var(--border-radius);
+	text-decoration: none;
+	font-weight: 600;
+	transition: background-color var(--transition-speed) ease, color
+		var(--transition-speed) ease, transform 0.2s ease;
+	cursor: pointer;
+	border: 2px solid transparent;
+	text-align: center;
+}
+
+.btn:hover {
+	transform: translateY(-2px);
+}
+
+.btn-primary {
+	background-color: var(--white-color);
+	color: var(--button-purple);
+	border-color: var(--button-purple);
+	padding: 10px 18px;
+	font-size: 0.9em;
+	font-weight: 700;
+}
+
+.btn-primary:hover {
+	background-color: var(--button-purple);
+	color: var(--white-color);
+	border-color: var(--button-purple);
+}
+
+.btn-secondary {
+	background-color: var(--secondary-color);
+	color: var(--white-color);
+	border-color: var(--secondary-color);
+}
+
+.btn-secondary:hover {
+	background-color: #5a6268;
+	border-color: #5a6268;
+}
+
+.btn-outline {
+	background-color: transparent;
+	color: var(--primary-color);
+	border-color: var(--primary-color);
+	padding: 10px 20px;
+}
+
+.btn-outline:hover {
+	background-color: var(--primary-color);
+	color: var(--white-color);
+}
+
+/* Specific styles for login and signup buttons */
+.btn-login, .btn-signup {
+	padding: 10px 20px;
+	min-width: 100px;
+	font-size: 0.95em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 8px;
+	font-weight: 700;
+}
+
+.btn-login {
+	background-color: var(--white-color);
+	color: var(--button-purple);
+	border: 2px solid var(--button-purple);
+}
+
+.btn-login:hover {
+	background-color: var(--button-purple);
+	color: var(--white-color);
+	border-color: var(--button-purple);
+}
+
+.btn-signup {
+	background-color: var(--button-purple);
+	color: var(--white-color);
+	border: 2px solid var(--button-purple);
+}
+
+.btn-signup:hover {
+	background-color: #5000cc;
+	border-color: #5000cc;
+}
+
+/* Header */
+.header {
+	background-color: var(--white-color);
+	color: var(--dark-color);
+	padding: var(--spacing-md) 0;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	position: relative;
+	top: 0;
+	z-index: 1000;
+}
+
+.header-content {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.logo {
+	flex-shrink: 0;
+}
+
+.logo a {
+	color: var(--dark-color);
+	text-decoration: none;
+	font-size: 1.8em;
+	font-weight: 700;
+}
+
+.logo a .acadia-first-letter {
+	color: var(--button-purple);
+}
+
+.main-nav {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	flex-grow: 1;
+}
+
+.main-nav ul {
+	list-style: none;
+	display: flex;
+	gap: 8px; /* Reduced gap between navigation items */
+}
+
+.main-nav ul li a {
+	color: var(--dark-color);
+	text-decoration: none;
+	font-weight: 500;
+	padding: 10px 18px;
+	position: relative;
+	border-radius: var(--border-radius);
+	transition: background-color var(--transition-speed) ease, color
+		var(--transition-speed) ease;
+}
+
+.main-nav ul li a::after {
+	content: none;
+}
+
+.main-nav ul li a:hover {
+	background-color: var(--light-purple);
+	color: var(--button-purple);
+}
+
+.auth-buttons {
+	display: flex;
+	gap: var(--spacing-sm);
+	margin-left: var(--spacing-sm);
+}
+
+.nav-toggle {
+	display: none;
+	font-size: 1.8em;
+	cursor: pointer;
+	color: var(--dark-color);
+}
+
+/* Main Content Sections */
+.main-content-section {
+	display: block; /* Default to visible */
+}
+
+/* Hero Section */
+.hero-section {
+	background: linear-gradient(135deg, var(--primary-color), #3f35a0);
+	color: var(--white-color);
+	padding: var(--spacing-lg) 0;
+	padding-bottom: 80px;
+}
+
+.hero-content {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--spacing-lg);
+	min-height: 500px;
+}
+
+.hero-text {
+	flex: 1;
+	min-width: 300px;
+	max-width: 600px;
+}
+
+.hero-text h1 {
+	font-size: 3.5em;
+	margin-bottom: 20px; /* Use variable where possible */
+	line-height: 1.2;
+	font-weight: 700;
+}
+
+.hero-text p {
+	font-size: 1.2em;
+	margin-bottom: 40px; /* Use variable where possible */
+	opacity: 0.9;
+}
+
+.hero-buttons {
+	display: flex;
+	gap: 10px; /* Use variable where possible */
+}
+
+.hero-image {
+	flex: 1;
+	min-width: 300px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.hero-image img {
+	max-width: 100%;
+	height: auto;
+	border-radius: var(--border-radius);
+	box-shadow: var(--box-shadow);
+}
+
+/* Features Section */
+.features-section {
+	background-color: var(--white-color);
+	padding: var(--spacing-lg) 0;
+	transform: translateY(-40px);
+	box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
+	border-radius: var(--border-radius);
+	margin: 0 auto;
+	position: relative;
+	z-index: 1;
+}
+
+.features-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: var(--spacing-md);
+	padding: var(--spacing-md);
+}
+
+.feature-item {
+	text-align: center;
+	padding: var(--spacing-md);
+	background-color: var(--white-color);
+	border-radius: var(--border-radius);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+	transition: transform var(--transition-speed) ease, box-shadow
+		var(--transition-speed) ease;
+}
+
+.feature-item:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+	font-size: 3em;
+	color: var(--primary-color);
+	margin-bottom: var(--spacing-sm);
+}
+
+.feature-item h3 {
+	font-size: 1.4em;
+	margin-bottom: var(--spacing-sm);
+	color: var(--dark-color);
+}
+
+.feature-item p {
+	font-size: 0.95em;
+	color: var(--secondary-color);
+}
+
+/* Courses Section */
+.courses-section {
+	padding: var(--spacing-lg) 0;
+	background-color: var(--light-color);
+}
+
+.section-title {
+	text-align: center;
+	font-size: 2.5em;
+	margin-bottom: var(--spacing-sm);
+	color: var(--dark-color);
+	font-weight: 700;
+}
+
+.section-subtitle {
+	text-align: center;
+	font-size: 1.1em;
+	color: var(--secondary-color);
+	margin-bottom: var(--spacing-lg);
+	max-width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.courses-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: var(--spacing-md);
+}
+
+/* Course Card Styles */
+.course-card {
+	background-color: var(--white-color);
+	border-radius: 10px;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+	overflow: hidden;
+	transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid #e0e0e0;
+}
+
+.course-card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.course-image-container {
+	position: relative;
+	width: 100%;
+	height: 200px;
+	overflow: hidden;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+.course-image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+.course-image-container::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+}
+
+.course-info {
+	padding: var(--spacing-md);
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.course-title {
+	font-size: 1.4em;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 10px;
+	color: var(--dark-color);
+	line-height: 1.3;
+}
+
+.course-description-text {
+	font-size: 0.95em;
+	color: var(--text-color);
+	line-height: 1.5;
+	margin-bottom: 10px;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.course-instructor-detail {
+	font-size: 0.88em;
+	color: var(--secondary-color);
+	margin-bottom: 15px;
+	font-weight: 500;
+}
+
+.course-tags-and-stats {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-bottom: 15px;
+	align-items: center;
+}
+
+.course-tag {
+	background-color: #e0f2f7;
+	color: #2196f3;
+	padding: 4px 8px;
+	border-radius: 4px;
+	font-size: 0.75em;
+	font-weight: 600;
+	white-space: nowrap;
+}
+
+.course-tag.bestseller {
+	background-color: #e6ffe6;
+	color: #28a745;
+}
+
+.course-rating-info {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	font-size: 0.8em;
+	color: var(--secondary-color);
+	white-space: nowrap;
+}
+
+.course-rating-info .fa-star {
+	color: #ffc107;
+	font-size: 0.9em;
+}
+
+.course-rating-info .rating-number {
+	font-weight: 600;
+	color: var(--dark-color);
+}
+
+.course-duration {
+	font-size: 0.8em;
+	color: var(--secondary-color);
+	margin-left: auto;
+	white-space: nowrap;
+}
+
+.course-price-section {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	margin-top: auto;
+	padding-top: var(--spacing-md);
+	border-top: 1px solid var(--gray-light);
+}
+
+.price-details {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.current-price {
+	font-size: 1.8em;
+	font-weight: 700;
+	color: var(--dark-color);
+}
+
+.original-price {
+	font-size: 0.9em;
+	color: var(--secondary-color);
+	text-decoration: line-through;
+	margin-top: 2px;
+}
+
+/* Updated styles for Add to cart button */
+.add-to-cart-button {
+	background-color: var(--white-color);
+	color: var(--button-purple);
+	border: 2px solid var(--button-purple);
+	padding: 10px 18px;
+	border-radius: 8px;
+	cursor: pointer;
+	font-size: 0.9em;
+	font-weight: 700;
+	transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s
+		ease;
+	white-space: nowrap;
+}
+
+.add-to-cart-button:hover {
+	background-color: var(--button-purple);
+	color: var(--white-color);
+	transform: translateY(-1px);
+}
+
+.text-center {
+	text-align: center;
+}
+
+.mt-40 {
+	margin-top: var(--spacing-lg);
+}
+
+/* Loading and Error Messages */
+.loading-message, .error-message {
+	grid-column: 1/-1;
+	text-align: center;
+	font-size: 1.1em;
+	padding: var(--spacing-md);
+	color: var(--secondary-color);
+	background-color: var(--gray-light);
+	border-radius: var(--border-radius);
+	margin-top: var(--spacing-md);
+}
+
+.error-message {
+	color: #dc3545;
+	background-color: #f8d7da;
+	border: 1px solid #f5c6cb;
+}
+
+/* CTA Section */
+.cta-section {
+	background: linear-gradient(45deg, #6556ff, #4a3dc4);
+	color: var(--white-color);
+	padding: var(--spacing-lg) 0;
+	text-align: center;
+	margin-top: var(--spacing-lg);
+}
+
+.cta-content h2 {
+	font-size: 2.5em;
+	margin-bottom: var(--spacing-md);
+	font-weight: 700;
+}
+
+.cta-content p {
+	font-size: 1.2em;
+	margin-bottom: var(--spacing-lg);
+	opacity: 0.9;
+	max-width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Footer */
+.footer {
+	background-color: var(--footer-bg);
+	color: var(--footer-text-light);
+	font-size: 0.95em;
+}
+
+.footer h3 {
+	font-size: 1.1em;
+	margin-bottom: var(--spacing-md);
+	color: var(--footer-heading-color);
+	font-weight: 700;
+}
+
+.footer ul {
+	list-style: none;
+	padding: 0;
+}
+
+.footer ul li {
+	margin-bottom: 8px;
+}
+
+.footer ul li a {
+	color: var(--footer-link-color);
+	text-decoration: none;
+	transition: color var(--transition-speed) ease;
+	font-size: 0.9em;
+}
+
+.footer ul li a:hover {
+	color: var(--white-color);
+}
+
+.footer-section-one {
+	background-color: var(--footer-section-one-bg);
+	padding: var(--spacing-lg) 0;
+	border-top: 1px solid var(--footer-border-color);
+}
+
+.footer-section-one .footer-heading {
+	font-size: 1.5em;
+	margin-bottom: var(--spacing-md);
+	font-weight: 700;
+	padding: 0 var(--spacing-md);
+	color: var(--footer-heading-color);
+}
+
+.footer-skills-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+	gap: var(--spacing-md);
+	padding: 0 var(--spacing-md);
+}
+
+.footer-col {
+	padding-right: var(--spacing-md);
+}
+
+.footer-section-two {
+	padding: var(--spacing-lg) 0;
+}
+
+.footer-company-info-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+	gap: var(--spacing-md);
+	padding: 0 var(--spacing-md);
+}
+
+.footer-bottom-bar {
+	display: flex;
+	/* Changed from space-between to center */
+	justify-content: center;
+	align-items: center;
+	padding: var(--spacing-md);
+	color: var(--footer-link-color);
+	font-size: 0.85em;
+	border-top: 1px solid var(--footer-border-color);
+	/* Added flex-direction column and gap for mobile stacking, if not already handled */
+	flex-direction: column;
+	gap: 10px; /* Small gap when stacked */
+}
+
+.footer-bottom-bar .footer-logo-copyright {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	/* Ensure it centers itself within the flex container */
+	justify-content: center;
+	text-align: center; /* For text within this div */
+}
+
+.footer-bottom-bar .logo {
+	font-size: 1.4em;
+	margin-bottom: 0;
+}
+
+.footer-bottom-bar .logo a {
+	color: var(--footer-text-light);
+	font-size: 1em;
+}
+
+.footer-bottom-bar .logo a .acadia-first-letter {
+	color: var(--button-purple);
+}
+
+/* Removed .footer-bottom-links as it's no longer needed */
+/* .footer-bottom-links {
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-bottom-links a {
+            color: var(--footer-link-color);
+            text-decoration: none;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .footer-bottom-links a:hover {
+            color: var(--white-color);
+        }
+
+        .language-selector {
+            position: relative;
+        }
+
+        .language-selector button {
+            background-color: transparent;
+            border: 1px solid var(--footer-border-color);
+            color: var(--footer-text-light);
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease;
+        }
+
+        .language-selector button:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .language-selector button i {
+            color: var(--footer-text-light);
+        } */
+
+/* Responsive Design for Navigation */
+@media ( max-width : 992px) {
+	.hero-content {
+		flex-direction: column;
+		text-align: center;
+	}
+	.hero-text h1 {
+		font-size: 2.8em;
+	}
+	.hero-text p {
+		font-size: 1.1em;
+	}
+	.hero-buttons {
+		justify-content: center;
+	}
+
+	/* Show hamburger icon */
+	.nav-toggle {
+		display: block;
+	}
+
+	/* Mobile navigation menu styling for white header */
+	.main-nav {
+		display: none;
+		flex-direction: column;
+		position: absolute;
+		top: 70px;
+		left: 0;
+		width: 100%;
+		background-color: var(--white-color);
+		box-shadow: var(--box-shadow);
+		padding: var(--spacing-md) 0;
+		border-top: 1px solid var(--gray-light);
+		animation: slideDown 0.3s ease-out;
+	}
+	.main-nav.active {
+		display: flex;
+	}
+	.main-nav ul {
+		flex-direction: column;
+		gap: var(--spacing-md);
+		padding-bottom: var(--spacing-md);
+		border-bottom: 1px solid var(--gray-light);
+		margin-bottom: var(--spacing-md);
+	}
+	.main-nav ul li {
+		text-align: center;
+	}
+	.main-nav ul li a {
+		display: block;
+		padding: 10px 0;
+		color: var(--dark-color);
+	}
+	.main-nav ul li a:hover {
+		background-color: var(--light-purple);
+		color: var(--button-purple);
+	}
+	.main-nav .auth-buttons {
+		flex-direction: column;
+		gap: var(--spacing-sm);
+		align-items: center;
+		margin-left: 0;
+	}
+
+	/* Login and Signup buttons for mobile within white menu */
+	.main-nav .btn-login, .main-nav .btn-signup {
+		width: 80%;
+		max-width: 250px;
+	}
+	.main-nav .btn-login {
+		color: var(--button-purple);
+		border-color: var(--button-purple);
+		background-color: var(--white-color);
+	}
+	.main-nav .btn-signup {
+		background-color: var(--button-purple);
+		color: var(--white-color);
+		border-color: var(--button-purple);
+	}
+	.features-section {
+		transform: translateY(0);
+		box-shadow: none;
+		border-radius: 0;
+	}
+	.features-grid, .courses-grid {
+		grid-template-columns: 1fr;
+	}
+	/* Stack footer columns on smaller screens */
+	.footer-skills-grid, .footer-company-info-grid {
+		grid-template-columns: 1fr;
+	}
+	/* Adjust padding for top-level footer sections on mobile to prevent double padding */
+	.footer-section-one .container, .footer-section-two .container {
+		padding-left: var(--spacing-md);
+		padding-right: var(--spacing-md);
+	}
+	.section-title {
+		font-size: 2em;
+	}
+	.section-subtitle {
+		font-size: 1.1em;
+	}
+	.cta-content h2 {
+		font-size: 2em;
+	}
+	.cta-content p {
+		font-size: 1em;
+	}
+	.footer-bottom-bar {
+		flex-direction: column; /* Ensure vertical stacking on small screens */
+		gap: var(--spacing-md); /* Adjust gap for stacked items */
+		text-align: center; /* Center text when stacked */
+	}
+	/* Removed styling for footer-bottom-links as it's no longer needed */
+	/* .footer-bottom-links {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .language-selector {
+                margin-left: 0;
+                margin-top: var(--spacing-sm);
+            } */
+}
+
+@media ( max-width : 768px) {
+	.hero-text h1 {
+		font-size: 2.2em;
+	}
+	.hero-text p {
+		font-size: 1em;
+	}
+	.btn {
+		padding: 10px 20px;
+		font-size: 0.9em;
+	}
+}
+
+@media ( max-width : 480px) {
+	.header-content {
+		padding: 0 var(--spacing-sm);
+	}
+	.hero-section, .features-section, .courses-section, .cta-section,
+		.footer {
+		padding-left: var(--spacing-sm);
+		padding-right: var(--spacing-sm);
+	}
+	.logo a {
+		font-size: 1.5em;
+	}
+	.hero-buttons {
+		flex-direction: column;
+		gap: var(--spacing-sm);
+	}
+}
+
+/* Optional: Dropdown animation */
+
+keyframes slideDown {from { opacity:0;
+	transform: translateY(-20px);
+}
+
+to {
+	opacity: 1;
+	transform: translateY(0);
+}
+}
+</style>
+</head>
+<body>
+	<header class="header">
+		<div class="container header-content">
+			<div class="logo">
+				<a href="#"><span class="acadia-first-letter">A</span>cadia</a>
+			</div>
+			<nav class="main-nav" id="mainNav">
+				<ul>
+					<li><a href="#home">Home</a></li>
+					<li><a href="#courses">Courses</a></li>
+					<li><a href="#about">About Us</a></li>
+					<li><a href="#contact">Contact</a></li>
+					<li><a href="/show">Dashboard</a></li>
+					<li><a href= "/reg">Register</a></li>
+					<!-- Added Register link -->
+				</ul>
+				<div class="auth-buttons">
+					<a href="/log" class="btn btn-login">Login</a> <a
+						href="/sinp" class="btn btn-signup">Sign Up</a>
+				</div>
+			</nav>
+			<div class="nav-toggle" id="navToggle">
+				<i class="fas fa-bars"></i>
+			</div>
+		</div>
+	</header>
+
+	<main class="main-content-section">
+		<section class="hero-section" id="home">
+			<div class="container hero-content">
+				<div class="hero-text">
+					<h1>Unlock Your Potential with Our Online Courses</h1>
+					<p>Access high-quality education from industry experts anytime,
+						anywhere. Your learning journey starts here.</p>
+					<div class="hero-buttons">
+						<a href="#courses" class="btn btn-primary">Explore Courses</a> <a
+							href="#" class="btn btn-secondary">Learn More</a>
+					</div>
+				</div>
+				<div class="hero-image">
+					<img src="https://themewagon.github.io/eclipse/img/header-img.png" alt="Online Learning"
+						onerror="this.onerror=null;this.src='https://placehold.co/600x400/5043d2/FFFFFF?text=Online+Learning';">
+				</div>
+			</div>
+		</section>
+
+		<section class="features-section">
+			<div class="container features-grid">
+				<div class="feature-item">
+					<i class="fas fa-chalkboard-teacher feature-icon"></i>
+					<h3>Expert Instructors</h3>
+					<p>Learn from professionals with real-world experience.</p>
+				</div>
+				<div class="feature-item">
+					<i class="fas fa-book-open feature-icon"></i>
+					<h3>Diverse Courses</h3>
+					<p>Explore a wide range of subjects to fit your interests.</p>
+				</div>
+				<div class="feature-item">
+					<i class="fas fa-certificate feature-icon"></i>
+					<h3>Certification</h3>
+					<p>Earn certificates to boost your career prospects.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="courses-section" id="courses">
+			<div class="container">
+				<h2 class="section-title">Popular Courses</h2>
+				<p class="section-subtitle">Choose from our best-selling courses
+					designed for all skill levels.</p>
+				<div class="courses-grid" id="coursesGrid">
+					<p id="loadingMessage" class="loading-message">Loading
+						courses...</p>
+					<p id="errorMessage" class="error-message" style="display: none;"></p>
+				</div>
+				<div class="text-center mt-40">
+					<a href="#" class="btn btn-outline">View All Courses</a>
+				</div>
+			</div>
+		</section>
+
+		<section class="cta-section">
+			<div class="container cta-content">
+				<h2>Ready to Start Your Learning Journey?</h2>
+				<p>Join thousands of students and unlock new opportunities
+					today.</p>
+				<a href="#" class="btn btn-primary">Enroll Now</a>
+			</div>
+		</section>
+	</main>
+
+	<footer class="footer" id="contact">
+		<div class="footer-section-one">
+			<div class="container">
+				<h2 class="footer-heading">Explore top skills and
+					certifications</h2>
+				<div class="footer-skills-grid">
+					<div class="footer-col">
+						<h3>In-demand Careers</h3>
+						<ul>
+							<li><a href="#">Data Scientist</a></li>
+							<li><a href="#">Full Stack Web Developer</a></li>
+							<li><a href="#">Cloud Engineer</a></li>
+							<li><a href="#">Project Manager</a></li>
+							<li><a href="#">Game Developer</a></li>
+							<li><a href="#">See all Career Accelerators</a></li>
+						</ul>
+					</div>
+					<div class="footer-col">
+						<h3>Web Development</h3>
+						<ul>
+							<li><a href="#">JavaScript</a></li>
+							<li><a href="#">React JS</a></li>
+							<li><a href="#">Angular</a></li>
+							<li><a href="#">Java</a></li>
+						</ul>
+					</div>
+					<div class="footer-col">
+						<h3>IT Certifications</h3>
+						<ul>
+							<li><a href="#">Amazon AWS</a></li>
+							<li><a href="#">AWS Certified Cloud Practitioner</a></li>
+							<li><a href="#">AZ-900: Microsoft Azure Fundamentals</a></li>
+							<li><a href="#">AWS Certified Solutions Architect -
+									Associate</a></li>
+							<li><a href="#">Kubernetes</a></li>
+						</ul>
+					</div>
+					<div class="footer-col">
+						<h3>Leadership</h3>
+						<ul>
+							<li><a href="#">Leadership</a></li>
+							<li><a href="#">Management Skills</a></li>
+							<li><a href="#">Project Management</a></li>
+							<li><a href="#">Personal Productivity</a></li>
+							<li><a href="#">Emotional Intelligence</a></li>
+						</ul>
+					</div>
+					<div class="footer-col">
+						<h3>Certifications by Skill</h3>
+						<ul>
+							<li><a href="#">Cybersecurity Certification</a></li>
+							<li><a href="#">Project Management Certification</a></li>
+							<li><a href="#">Cloud Certification</a></li>
+							<li><a href="#">Data Analytics Certification</a></li>
+							<li><a href="#">HR Management Certification</a></li>
+							<li><a href="#">See all Certifications</a></li>
+						</ul>
+					</div>
+					<div class="footer-col">
+						<h3>Data Science</h3>
+						<ul>
+							<li><a href="#">Data Science</a></li>
+							<li><a href="#">Python</a></li>
+							<li><a href="#">Machine Learning</a></li>
+							<li><a href="#">ChatGPT</a></li>
+							<li><a href="#">Deep Learning</a></li>
+						</ul>
+					</div>
+					<div class="footer-col">
+						<h3>Communication</h3>
+						<ul>
+							<li><a href="#">Communication Skills</a></li>
+							<li><a href="#">Presentation Skills</a></li>
+							<li><a href="#">Public Speaking</a></li>
+							<li><a href="#">Writing</a></li>
+							<li><a href="#">PowerPoint</a></li>
+						</ul>
+					</div>
+					<div class="footer-col">
+						<h3>Business Analytics & Intelligence</h3>
+						<ul>
+							<li><a href="#">Microsoft Excel</a></li>
+							<li><a href="#">SQL</a></li>
+							<li><a href="#">Microsoft Power BI</a></li>
+							<li><a href="#">Data Analysis</a></li>
+							<li><a href="#">Business Analysis</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="footer-section-two">
+			<div class="container">
+				<div class="footer-company-info-grid">
+					<div class="footer-col">
+						<h3>About</h3>
+						<ul>
+							<li><a href="#">About us</a></li>
+							<li><a href="#">Careers</a></li>
+							<li><a href="#">Contact us</a></li>
+							<li><a href="#">Blog</a></li>
+							<li><a href="#">Investors</a></li>
+						</ul>
+					</div>
+					<div class="footer-col">
+						<h3>Discover Acadia</h3>
+						<ul>
+							<li><a href="#">Get the app</a></li>
+							<li><a href="#">Teach on Acadia</a></li>
+							<li><a href="#">Plans and Pricing</a></li>
+							<li><a href="#">Affiliate</a></li>
+							<li><a href="#">Help and Support</a></li>
+						</ul>
+					</div>
+					<div class="footer-col">
+						<h3>Acadia for Business</h3>
+						<ul>
+							<li><a href="#">Acadia Business</a></li>
+						</ul>
+					</div>
+					<div class="footer-col">
+						<h3>Legal & Accessibility</h3>
+						<ul>
+							<li><a href="#">Accessibility statement</a></li>
+							<li><a href="#">Privacy policy</a></li>
+							<li><a href="#">Sitemap</a></li>
+							<li><a href="#">Terms</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="footer-bottom-bar">
+			<div class="footer-logo-copyright">
+				<div class="logo">
+					<a href="#"><span class="acadia-first-letter">A</span>cadia</a>
+				</div>
+				<span>&copy; 2025 Acadia, Inc.</span>
+			</div>
+		</div>
+	</footer>
+
+	<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navToggle = document.getElementById('navToggle');
+            const mainNav = document.getElementById('mainNav');
+            const navLinks = mainNav.querySelectorAll('a');
+
+            navToggle.addEventListener('click', () => {
+                mainNav.classList.toggle('active');
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    // Check if the clicked link is for "Contact" and if the menu is active
+                    if (link.getAttribute('href') === '#contact' && mainNav.classList.contains('active')) {
+                        // Close the mobile menu after clicking "Contact"
+                        mainNav.classList.remove('active');
+                    }
+                     // For all other links (including #home, #courses, #about, #dashboard), also close the menu if active
+                    else if (link.getAttribute('href') !== 'login.html' && link.getAttribute('href') !== 'signup.html' && mainNav.classList.contains('active')) {
+                        mainNav.classList.remove('active');
+                    }
+                });
+            });
+
+            // --- Course Card Dynamic Loading ---
+            const coursesGrid = document.getElementById('coursesGrid');
+            const loadingMessage = document.getElementById('loadingMessage');
+            const errorMessage = document.getElementById('errorMessage');
+
+            const dummyCourses = [
+                {
+                    id: 1,
+                    image: 'https://www.excelptp.com/wp-content/uploads/2019/08/default-blog-excelptp.jpg',
+                    title: 'The Complete Full-Stack Web Development Bootcamp',
+                    description: 'Become a Full-Stack Web Developer with just ONE course. HTML, CSS, Javascript, Node, React, MongoDB, Express.',
+                    instructor: 'Dr. Angela Yu, Developer and Lead Instructor',
+                    isBestseller: true,
+                    rating: 4.7,
+                    numRatings: 442224,
+                    totalHours: 61.5,
+                    numLectures: 374,
+                    level: 'All Levels',
+                    originalPrice: 3109,
+                    currentPrice: 479
+                },
+                {
+                    id: 2,
+                    image: 'https://static.wemakescholars.com/images/blog/topprofessionalitcoursetopursueincollege.webp',
+                    title: 'Python for Data Science and Machine Learning Bootcamp',
+                    description: 'Learn Python for data analysis, machine learning, and visualization with this comprehensive course.',
+                    instructor: 'Jose Portilla, Lead Data Scientist',
+                    isBestseller: false,
+                    rating: 4.6,
+                    numRatings: 350123,
+                    totalHours: 25,
+                    numLectures: 150,
+                    level: 'Intermediate',
+                    originalPrice: 2500,
+                    currentPrice: 399
+                },
+                {
+                    id: 3,
+                    image: 'https://classtraining.com.au/wp-content/uploads/2021/04/it-courses.jpg',
+                    title: 'The Modern JavaScript Bootcamp',
+                    description: 'The most complete JavaScript course with projects, challenges, and advanced topics.',
+                    instructor: 'Brad Traversy, Web Developer',
+                    isBestseller: true,
+                    rating: 4.8,
+                    numRatings: 280500,
+                    totalHours: 50,
+                    numLectures: 250,
+                    level: 'Beginner to Advanced',
+                    originalPrice: 2800,
+                    currentPrice: 450
+                },
+                {
+                    id: 4,
+                    image: 'https://www.besanttechnologies.com/wp-content/uploads/2019/11/online-training-1.png',
+                    title: 'UI/UX Design Principles for Beginners',
+                    description: 'Learn the fundamentals of UI/UX design, user research, wireframing, and prototyping.',
+                    instructor: 'Sarah Lee, UI/UX Expert',
+                    isBestseller: false,
+                    rating: 4.5,
+                    numRatings: 120000,
+                    totalHours: 30,
+                    numLectures: 180,
+                    level: 'Beginner',
+                    originalPrice: 1800,
+                    currentPrice: 299
+                },
+                {
+                    id: 5,
+                    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjc3vl8LjUuFy-YsZcGOrpFWtak45ptPYhSw&s',
+                    title: 'Front-End Web Design with HTML, CSS & JavaScript',
+                    description: 'Build beautiful and responsive websites from scratch with modern front-end technologies.',
+                    instructor: 'Michael Chen, Web Designer',
+                    isBestseller: false,
+                    rating: 4.4,
+                    numRatings: 95000,
+                    totalHours: 35,
+                    numLectures: 200,
+                    level: 'Beginner',
+                    originalPrice: 2000,
+                    currentPrice: 350
+                },
+                {
+                    id: 6,
+                    image: 'https://datamanagementeducation.com/cdn/shop/products/Data-analysis-concept.jpg?v=1597324983',
+                    title: 'Data Structures & Algorithms in Java',
+                    description: 'Master essential data structures and algorithms using Java for coding interviews and problem-solving.',
+                    instructor: 'Dr. Jane Smith, Software Engineer',
+                    isBestseller: true,
+                    rating: 4.7,
+                    numRatings: 180000,
+                    totalHours: 40,
+                    numLectures: 280,
+                    level: 'Intermediate',
+                    originalPrice: 2900,
+                    currentPrice: 500
+                }
+            ];
+
+            function createCourseCard(course) {
+                const card = document.createElement('div');
+                card.classList.add('course-card');
+
+                card.innerHTML = `
+                    <div class="course-image-container">
+                        <img src="${course.image}" alt="${course.title}" class="course-image">
+                    </div>
+                    <div class="course-info">
+                        <h3 class="course-title">${course.title}</h3>
+                        <p class="course-description-text">${course.description}</p>
+                        <p class="course-instructor-detail">${course.instructor}</p>
+                        <div class="course-tags-and-stats">
+                            ${course.isBestseller ? '<span class="course-tag bestseller">Bestseller</span>' : ''}
+                            <span class="course-rating-info">
+                                <i class="fas fa-star"></i>
+                                <span class="rating-number">${course.rating.toFixed(1)}</span>
+                                (${course.numRatings.toLocaleString()} ratings)
+                            </span>
+                            <span class="course-duration">${course.totalHours} total hours</span>
+                            ${course.numLectures ? `<span class="course-tag">${course.numLectures} lectures</span>` : ''}
+                            <span class="course-tag">${course.level}</span>
+                        </div>
+                        <div class="course-price-section">
+                            <div class="price-details">
+                                <span class="current-price">₹${course.currentPrice.toLocaleString()}</span>
+                                <span class="original-price">₹${course.originalPrice.toLocaleString()}</span>
+                            </div>
+                            <button class="add-to-cart-button">Add to cart</button>
+                        </div>
+                    </div>
+                `;
+                coursesGrid.appendChild(card);
+            }
+
+            async function loadCourses() {
+                loadingMessage.style.display = 'block';
+                errorMessage.style.display = 'none';
+                coursesGrid.innerHTML = '';
+
+                try {
+                    await new Promise(resolve => setTimeout(resolve, 800));
+
+                    if (dummyCourses.length === 0) {
+                        coursesGrid.innerHTML = '<p class="loading-message">No courses found.</p>';
+                    } else {
+                        dummyCourses.forEach(course => createCourseCard(course));
+                    }
+
+                } catch (error) {
+                    console.error('Error loading courses:', error);
+                    errorMessage.textContent = 'Failed to load courses. Please try again.';
+                } finally {
+                    loadingMessage.style.display = 'none';
+                }
+            }
+
+            loadCourses();
+        });
+    </script>
+</body>
+</html>
