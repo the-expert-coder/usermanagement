@@ -1,4 +1,4 @@
-# Spring Boot Crud Operation-Online Course Enrollment System
+# Spring Boot Crud  Student course management System
 # usermanagement
 code is uploaded in new branch
 
